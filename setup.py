@@ -9,6 +9,9 @@ setup(
     packages=find_packages(),
     url='https://github.com/remla24-team12/lib_ml',
     install_requires=[
-        #TODO: add required packages here
+        "keras-preprocessing==1.1.2",
+        "keras==3.2.1",
+        "scikit-learn==1.4.2",
+        "pandas==2.2.2"
     ],
 )
