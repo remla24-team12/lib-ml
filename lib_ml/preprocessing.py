@@ -40,7 +40,11 @@ def process_data(raw_train, raw_val, raw_test):
     y_test = encoder.transform(raw_y_test)
 
     return {
-       char_index, 
-       x_train, x_val, x_test, 
-       y_train, y_val, y_test
+        "char_index": char_index,
+        "x_train": x_train,
+        "x_val": x_val,
+        "x_test": x_test,
+        "y_train": y_train,
+        "y_val": y_val,
+        "y_test": y_test
     }
