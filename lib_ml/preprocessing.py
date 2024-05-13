@@ -48,3 +48,13 @@ def process_data(raw_train, raw_val, raw_test):
         "y_val": y_val,
         "y_test": y_test
     }
+
+def process_new_input(url):
+    "Tokenize new input"
+
+    input_data = list([url.strip()])
+
+    tokenizer = Tokenizer(lower=True, char_level=True, oov_token='-n-')
+    tokenizer.fit_on_texts(input_data)
+
+    return pad_sequences(tokenizer.texts_to_sequences(input_data), maxlen=200)
