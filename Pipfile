@@ -4,8 +4,8 @@ verify_ssl = true
 name = "pypi"
 
 [packages]
-lib-ml = {file = ".", editable = true}
 dvc = {extras = ["gdrive"], version = "==3.50.1"}
+lib-ml = {file = ".", editable = true}
 
 [dev-packages]
 

@@ -14,4 +14,5 @@ setup(
         "scikit-learn==1.4.2",
         "pandas==2.2.2"
     ],
+    extras_requires={"dvc==3.50.1": ["gdrive"]}
 )
