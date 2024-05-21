@@ -3,7 +3,7 @@
 from setuptools import setup, find_packages
 
 setup(
-    name='lib-ml',
+    name='lib-ml-remla-12',
     version='0.1.2',  # Use a versioning scheme
     long_description=open('README.md').read(),
     packages=find_packages(),

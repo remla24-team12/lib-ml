@@ -1,39 +1,49 @@
 name: Publish Python Package
 
 on:
+  workflow_run:
+    workflows: ["Auto Versioning"]
+    types:
+      - completed
   push:
     branches:
-      - main
-  pull_request:
-    branches:
-      - main
-
+      - main 
 jobs:
   build:
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-latest  
 
     steps:
     - name: Checkout code
-      uses: actions/checkout@v2
-      
+      uses: actions/checkout@v2 
+      with:
+        fetch-depth: 0  
+
+    - name: Get latest tag
+      id: get_version
+      run: echo "VERSION=$(git describe --tags `git rev-list --tags --max-count=1`)" >> $GITHUB_ENV
+
     - name: Set up Python
-      uses: actions/setup-python@v2
+      uses: actions/setup-python@v2  
       with:
         python-version: '3.x'
 
     - name: Install dependencies
       run: |
-        python -m pip install --upgrade pip
-        pip install setuptools wheel twine
+        python -m pip install --upgrade pip  # Upgrade pip
+        pip install setuptools wheel twine  # Install required packages for building and uploading.
+
+    - name: Update version in setup.py
+      run: |
+        sed -i "s/version='.*'/version='${{ env.VERSION }}'/" setup.py
 
     - name: Build package
       run: |
-        python setup.py sdist bdist_wheel
+        python setup.py sdist bdist_wheel  # Builds source and wheel package.
 
-    - name: Publish to GitHub Packages
-      if: github.event_name == 'push'
+    - name: Publish to PyPI
+      if: github.event_name == 'push'  # Ensures this step only runs on push events.
       env:
-        TWINE_USERNAME: __token__
-        TWINE_PASSWORD: ${{ secrets.REMLA_TOKEN }}
+        TWINE_USERNAME: __token__ 
+        TWINE_PASSWORD: ${{ secrets.PYPI_PASSWORD }}  
       run: |
-        twine upload --repository-url https://pypi.pkg.github.com/${{ github.repository_owner }} dist/*
+        twine upload dist/*
