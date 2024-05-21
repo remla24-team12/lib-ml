@@ -3,7 +3,7 @@ name: Publish Python Package
 on:
   push:
     branches:
-      - fix_lib-ml  # Run this workflow on push events to the main branch.
+      - main  # Run this workflow on push events to the main branch.
 
 jobs:
   build:
