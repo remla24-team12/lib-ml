@@ -36,4 +36,4 @@ jobs:
         TWINE_USERNAME: __token__
         TWINE_PASSWORD: ${{ secrets.REMLA_TOKEN }}
       run: |
-      twine upload --repository-url https://pypi.pkg.github.com/${{ github.repository_owner }} dist/*
+        twine upload --repository-url https://pypi.pkg.github.com/${{ github.repository_owner }} dist/*
