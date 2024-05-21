@@ -30,7 +30,7 @@ jobs:
     - name: Publish to PyPI
       if: github.event_name == 'push'  # Ensures this step only runs on push events.
       env:
-        TWINE_USERNAME: ${{ secrets.PYPI_USERNAME }}  # Username for PyPI
+        TWINE_USERNAME: __token__  # Username for PyPI
         TWINE_PASSWORD: ${{ secrets.PYPI_PASSWORD }}  # Password or token for PyPI
       run: |
-        twine upload dist/*  # Uploads the distributions to PyPI.
+        twine upload dist/*  
