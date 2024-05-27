@@ -41,6 +41,7 @@ def process_data(raw_train, raw_val, raw_test):
 
     return {
         "char_index": char_index,
+        "tokenizer": tokenizer,
         "x_train": x_train,
         "x_val": x_val,
         "x_test": x_test,
