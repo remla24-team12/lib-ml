@@ -4,7 +4,7 @@ from setuptools import setup, find_packages
 
 setup(
     name='lib-ml-remla-12',
-    version='0.1.2',  # Use a versioning scheme
+    version='0.1.11',  # Use a versioning scheme
     long_description=open('README.md').read(),
     packages=find_packages(),
     url='https://github.com/remla24-team12/lib_ml',
